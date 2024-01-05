@@ -1,0 +1,43 @@
+
+
+<a href="{% url 'add-task' %}">
+    <button type="button">
+    Add new task
+    </button>
+</a> 
+{% if tasks %}
+    <table>
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Status</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+         <tbody>
+    {% for task in tasks %}
+           
+                <tr>
+                    <td>{{task.title}}</td>
+                    <td>{{task.status}}</td>
+                    <td>
+                        <a href="{% url 'update-task' task.id %}">
+                            <button type="button">
+                            update
+                            </button>
+                        </a> 
+                        <a href="{% url 'delete-task' task.id %}">
+                            <button type="button">
+                            delete
+                            </button>
+                        </a> 
+                    </td>
+                </tr>
+            
+    
+    {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+<h1>Liste vide</h1>
+{% endif %}
